@@ -99,7 +99,7 @@ public class GameUI : MonoBehaviour
     {
         if (score != 0)
         {
-            scoreText.text = "Score:" + score;//Scoru trebe resetat e static and shit@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@2
+            scoreText.text = "Score:" + score;
             win_Score.GetComponent<Text>().text = scoreText.text;
             lose_Score.GetComponent<Text>().text = scoreText.text;
         }

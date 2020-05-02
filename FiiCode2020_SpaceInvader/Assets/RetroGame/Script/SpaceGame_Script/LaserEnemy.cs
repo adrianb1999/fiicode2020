@@ -74,12 +74,11 @@ public class LaserEnemy : Enemy
             GameObject bonus = Instantiate(bonusShoot[randomBonus], transform.position, Quaternion.identity);
             Destroy(bonus, 5f);
         }
-        //Else niciun bonus
     }
     
     private void Oscillation()
     {
-        if (!Timer.isTimeStart()) return; // daca timpul este oprit
+        if (!Timer.isTimeStart()) return;
         y += 0.05f;
         x = Mathf.Sin(y);
         x /= 2;

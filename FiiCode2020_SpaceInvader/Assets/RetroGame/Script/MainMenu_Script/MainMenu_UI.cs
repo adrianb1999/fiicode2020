@@ -53,13 +53,12 @@ public class MainMenu_UI : MonoBehaviour
     {
         Title.sizeDelta = new Vector2(Screen.height * 0.6f, Screen.height * 0.2f);
         Title.transform.position = new Vector2(Screen.width / 2, Screen.height * 0.85f);
-        //Title.GetComponent<Text>().fontSize = (int)Screen.height / 10;
 
         StartButton.sizeDelta = new Vector2(Screen.height / 1.5f,Screen.height / 9);
         StartButton.transform.position = new Vector2(Screen.width / 2, Screen.height * 0.55f);
         StartButton.GetComponent<Text>().fontSize =(int) Screen.height / 17;
 
-        OptionButton.sizeDelta = new Vector2(Screen.height / 1.5f, Screen.height / 9); //Optinuni de selectat fie mouse / WASD + SPACE
+        OptionButton.sizeDelta = new Vector2(Screen.height / 1.5f, Screen.height / 9); 
         OptionButton.transform.position = new Vector2(Screen.width / 2, Screen.height * 0.39f);
         OptionButton.GetComponent<Text>().fontSize = (int)Screen.height / 17;
 
@@ -104,8 +103,6 @@ public class MainMenu_UI : MonoBehaviour
         for (int i = 0; i < 9; i++)
         {
             LevelButton[i].GetChild(0).gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height / 10, Screen.height / 10);
-            //GetComponentInChildren<RectTransform>().sizeDelta = new Vector2(Screen.height / 5, Screen.height / 5);
-          //  LevelButton[i].GetComponentInChildren<RectTransform>().transform.position = LevelButton[i].transform.position;
         }
         LevelButton[9].GetChild(0).gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.height / 5, Screen.height / 5);
     }
