@@ -55,7 +55,18 @@ public class SpawnEnemies : MonoBehaviour
     {
         Vector3 enemyCoordonates = new Vector3(16, 0, 14);
         EnemyBoss enemyBoss = Instantiate(boss, new Vector3(16, 0, 25), Quaternion.identity).GetComponent<EnemyBoss>();
-        enemyBoss.Initialize(100, 2, 0.5f, enemyCoordonates,bossIndex);
+        switch (bossIndex)
+        {
+            case 1:
+                enemyBoss.Initialize(300, 2, 0.5f, enemyCoordonates, bossIndex);
+                break;
+            case 2:
+                enemyBoss.Initialize(500, 2, 0.5f, enemyCoordonates, bossIndex);
+                break;
+            case 3:
+                enemyBoss.Initialize(800, 2, 0.5f, enemyCoordonates, bossIndex);
+                break;
+        }
         enemiesAlive++;
     }
     public void DecreseEnemyAlive()

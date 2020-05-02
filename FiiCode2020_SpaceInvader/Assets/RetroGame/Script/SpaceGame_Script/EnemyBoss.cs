@@ -66,6 +66,11 @@ public class EnemyBoss : MonoBehaviour
                 spawnEnemies.DecreseEnemyAlive();
                 Destroy(gameObject);
                 SpawnExplosion(transform.position, 1);
+                SpawnExplosion(new Vector3(transform.position.x + 1,transform.position.y,transform.position.z + 1), 1);
+                SpawnExplosion(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z - 1), 1);
+                SpawnExplosion(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z + 1), 1);
+                SpawnExplosion(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z - 1), 1);
+
             }
             SpawnExplosion(other.transform.position, 0);
             Destroy(other.gameObject);

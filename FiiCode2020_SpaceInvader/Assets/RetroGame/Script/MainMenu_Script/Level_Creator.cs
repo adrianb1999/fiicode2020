@@ -270,7 +270,7 @@ public class Level_Creator : MonoBehaviour
                 spawnEnemies.SpawnEnemy(6, 4, "RocketEnemy", 90, 1, 2);
                 break;
             case 2:
-                spawnEnemies.SpawnEnemy(7, 4, "FireEnemy", 90, 1, 2);
+                spawnEnemies.SpawnEnemy(6, 4, "FireEnemy", 90, 1, 2); ;
                 break;
             case 3:
                 spawnEnemies.SpawnEnemy(7, 4, "LaserEnemy", 90, 1, 2);

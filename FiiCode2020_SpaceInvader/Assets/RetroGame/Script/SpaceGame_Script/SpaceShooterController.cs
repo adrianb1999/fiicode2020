@@ -5,8 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class SpaceShooterController : MonoBehaviour
 {
-    [SerializeField]
-    public float moveSpeed = 10f;
+    [SerializeField] public float moveSpeed = 10f;
     public float rotateSpeed = 10f;
     public float leftrightSpeed = 5f;
     [SerializeField] bool canShoot = false;
@@ -78,13 +77,6 @@ public class SpaceShooterController : MonoBehaviour
             pauseWindow.SetActive(pause);
             CursorMode(pause);
         }
-        //DEBUG
-            if(Input.GetKeyDown(KeyCode.T))
-            {
-                health = 1000;
-                levelOfShooting = 4;
-            }
-        //DEBUG
     }
     void FixedUpdate()
     {
@@ -122,7 +114,6 @@ public class SpaceShooterController : MonoBehaviour
                 break;
         }
     }
-
     private void RotationProcess()
     {
         if (movementMode == 1)

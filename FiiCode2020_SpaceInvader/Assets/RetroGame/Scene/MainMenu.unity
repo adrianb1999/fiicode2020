@@ -2644,7 +2644,7 @@ GameObject:
   - component: {fileID: 1339221457}
   - component: {fileID: 1339221456}
   m_Layer: 0
-  m_Name: Swich
+  m_Name: Switch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
