@@ -93,13 +93,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc2b97b6a3bf834f92f925d79b97e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 6652696799245664613, guid: 7379ae0312aac4841be70c97dccdfe81, type: 3}
-  bonusShoot:
-  - {fileID: 0}
-  - {fileID: 0}
+  bullet:
+  - {fileID: 6652696799245664613, guid: 7379ae0312aac4841be70c97dccdfe81, type: 3}
+  - {fileID: 207657694710046945, guid: cdc2aa58b9ca5704c8f01d0fe2154c0f, type: 3}
+  - {fileID: 5212603081160662558, guid: b7c5bc057433580489934d0567193cdc, type: 3}
   explosionObject:
   - {fileID: 4792554053970418186, guid: 2eb6c76b7742dbd4191a17d57c50a05c, type: 3}
   - {fileID: 397565967013710897, guid: 48d3d2115af78e44cbf4ab18e9094dc9, type: 3}
+  type: 0
   health: 0
   power: 0
   shootTime: 0
