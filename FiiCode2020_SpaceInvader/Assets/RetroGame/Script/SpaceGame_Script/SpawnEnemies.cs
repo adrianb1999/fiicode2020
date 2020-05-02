@@ -79,8 +79,6 @@ public class SpawnEnemies : MonoBehaviour
                 StartCoroutine(WinEvent());
             StartCoroutine(Spawner());
             StartCoroutine(CountDown(seconds));
-            print("Wave : " + wave);
-      
         }
     }
     public IEnumerator Spawner()

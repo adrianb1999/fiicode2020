@@ -36,7 +36,7 @@ public class Save_Level : MonoBehaviour
     public void SaveFile()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        string destination = Application.persistentDataPath + "/SaveGame3.dat";
+        string destination = Application.persistentDataPath + "/SpaceInvaderSave.dat";
         FileStream file;
 
         if (File.Exists(destination)) file = File.OpenWrite(destination);
@@ -62,7 +62,7 @@ public class Save_Level : MonoBehaviour
     public void LoadFile()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        string destination = Application.persistentDataPath + "/SaveGame3.dat";
+        string destination = Application.persistentDataPath + "/SpaceInvaderSave.dat";
         FileStream file;
 
         if (File.Exists(destination)) file = File.OpenRead(destination);
@@ -89,7 +89,7 @@ public class Save_Level : MonoBehaviour
     public void RestFile()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        string destination = Application.persistentDataPath + "/SaveGame3.dat";
+        string destination = Application.persistentDataPath + "/SpaceInvaderSave.dat";
         FileStream file;
 
         if (File.Exists(destination))
