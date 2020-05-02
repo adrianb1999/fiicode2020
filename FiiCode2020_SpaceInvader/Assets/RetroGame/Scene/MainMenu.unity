@@ -406,6 +406,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'A & D : MOVE
 
+
     SPACE : SHOOT'
 --- !u!222 &26894267
 CanvasRenderer:
@@ -4153,6 +4154,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 'MOUSE : MOVE
+
 
     LEFT CLICK : SHOOT'
 --- !u!222 &2101193120

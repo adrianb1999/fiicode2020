@@ -37,7 +37,7 @@ public class SpaceShooterController : MonoBehaviour
         healthBar.fillAmount = 1;
     }
 
-    private static void CursorMode(bool mode)
+    public void CursorMode(bool mode)
     {
         if (!mode)
         {

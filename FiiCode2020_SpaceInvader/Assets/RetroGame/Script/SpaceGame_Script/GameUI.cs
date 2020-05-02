@@ -27,12 +27,12 @@ public class GameUI : MonoBehaviour
         
         scoreText.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 5, Screen.width / 10);
         scoreText.GetComponent<RectTransform>().transform.position = new Vector2(Screen.width / 10, Screen.height - Screen.width / 20);
-        scoreText.fontSize = (int)Screen.height / 25;
+        scoreText.fontSize = (int)Screen.height / 30;
         scoreText.text = "";
 
         levelText.GetComponent<RectTransform>().sizeDelta = new Vector2(Screen.width / 5, Screen.width / 10);
         levelText.GetComponent<RectTransform>().transform.position = new Vector2(Screen.width - Screen.width / 10, Screen.height - Screen.width / 20);
-        levelText.fontSize = (int)Screen.height / 25;
+        levelText.fontSize = (int)Screen.height / 30;
 
         waveText.fontSize = (int)Screen.height / 20;
 

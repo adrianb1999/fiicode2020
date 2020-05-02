@@ -36,14 +36,14 @@ public class MainMenu_UI : MonoBehaviour
 
         mouseInput_Text.sizeDelta = new Vector2(Screen.height * 0.5625f * 0.75f, Screen.height * 0.1875f);
         mouseInput_Text.transform.position = new Vector2(Screen.width / 2 + Screen.height * 0.5625f * 0.125f, Screen.height * 0.59375f);
-        mouseInput_Text.GetComponent<Text>().fontSize = (int)Screen.height / 40;
+        mouseInput_Text.GetComponent<Text>().fontSize = (int)Screen.height / 45;
 
         setting_keyInput.sizeDelta = new Vector2(Screen.height * 0.05f, Screen.height * 0.05f);
         setting_keyInput.transform.position = new Vector2(Screen.width / 2 - Screen.height * 0.5625f * 0.375f, Screen.height * 0.40625f);
 
         keyInput_text.sizeDelta = new Vector2(Screen.height * 0.5625f * 0.75f, Screen.height * 0.1875f);
         keyInput_text.transform.position = new Vector2(Screen.width / 2 + Screen.height * 0.5625f * 0.125f, Screen.height * 0.40625f);
-        keyInput_text.GetComponent<Text>().fontSize = (int)Screen.height / 40;
+        keyInput_text.GetComponent<Text>().fontSize = (int)Screen.height / 45;
 
         setting_back.sizeDelta = new Vector2(Screen.height * 0.5625f, Screen.height * 0.1875f);
         setting_back.transform.position = new Vector2(Screen.width / 2, Screen.height * 0.21875f);
