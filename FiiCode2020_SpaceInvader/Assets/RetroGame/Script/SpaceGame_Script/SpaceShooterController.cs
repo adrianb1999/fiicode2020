@@ -54,10 +54,10 @@ public class SpaceShooterController : MonoBehaviour
     {
         if (movementMode == 1)
             if (Input.GetKey(KeyCode.Space))
-            canShoot = true;
+                canShoot = true;
             else
                 canShoot = false;
-        if(movementMode == 2)
+        if (movementMode == 2)
             if (Input.GetKey(KeyCode.Mouse0))
                 canShoot = true;
             else
@@ -80,7 +80,7 @@ public class SpaceShooterController : MonoBehaviour
     }
     void FixedUpdate()
     {
-        RotationProcess();
+        MoveProcess();
         if (!canShoot)
         {
             if (laserAudio.isPlaying)
@@ -88,20 +88,23 @@ public class SpaceShooterController : MonoBehaviour
         }
         else
         {
-            if(!laserAudio.isPlaying)
-               laserAudio.Play();
+            if (!laserAudio.isPlaying)
+                laserAudio.Play();
         }
     }
-
+    void LateUpdate()
+    {
+        MoveProcess2();
+    }
     private void Shoot()
     {
-        switch(levelOfShooting)
+        switch (levelOfShooting)
         {
             case 1:
-                Shoots(bullet, transform.position, 2.5f,0);
+                Shoots(bullet, transform.position, 2.5f, 0);
                 break;
             case 2:
-                for (float i = -15f; i <= 15f; i+=15f)
+                for (float i = -15f; i <= 15f; i += 15f)
                     Shoots(bullet, transform.position, 2.5f, i);
                 break;
             case 3:
@@ -114,7 +117,7 @@ public class SpaceShooterController : MonoBehaviour
                 break;
         }
     }
-    private void RotationProcess()
+    private void MoveProcess()
     {
         if (movementMode == 1)
         {
@@ -127,7 +130,10 @@ public class SpaceShooterController : MonoBehaviour
                 transform.Translate(Vector3.left * leftrightSpeed * Time.deltaTime);
             }
         }
-        else if (movementMode == 2)
+    }
+    private void MoveProcess2()
+    {
+        if (movementMode == 2)
         {
             transform.Translate(2.5f * Input.GetAxis("Mouse X") * Vector3.right * leftrightSpeed * Time.deltaTime);
         }

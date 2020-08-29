@@ -16,7 +16,7 @@ public class BulletClass : MonoBehaviour
     {
         this.force = force;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         transform.Translate(Vector3.forward * force * Time.deltaTime);
     }

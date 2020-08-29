@@ -11,13 +11,16 @@ public class LaserEnemy : Enemy
     [SerializeField] GameObject[] explosionObject = new GameObject[2];
     Score score;
     SpawnEnemies spawnEnemies;
-
+    //new 
+    [SerializeField] Vector3 newCoords;
+    [SerializeField] bool trigger;
     public override void Initialize(int health, int power, float shootTime, Vector3 coordonates2Reach)
     {
         base.Initialize(health, power, shootTime, coordonates2Reach);
     }
     void Start()
     {
+        trigger = false;
         score = FindObjectOfType<Score>();
         spawnEnemies = FindObjectOfType<SpawnEnemies>();
         y = 0f;
@@ -25,17 +28,11 @@ public class LaserEnemy : Enemy
         shootPeriod = UnityEngine.Random.Range(shootTime, shootTime + 3);
         StartCoroutine(ShootDelay(shootPeriod));
         positionReach = false;
+        newCoords = coordonates2Reach;
     }
-    void Update()
+    void FixedUpdate()
     {
-        if (transform.position != coordonates2Reach)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, coordonates2Reach, moveSpeed * Time.deltaTime);
-        }
-        else
-            positionReach = true;
-        if (positionReach)
-            Oscillation();
+        Oscillation();
     }
     public override void Shoot(GameObject bullet, Vector3 coords, float destroyTime)
     {
@@ -51,12 +48,12 @@ public class LaserEnemy : Enemy
             {
                 SpawnBonus();
                 score.UpdateScore(1);
-                spawnEnemies.DecreseEnemyAlive();
+                spawnEnemies.DecreseEnemyAlive(this.gameObject);
                 Destroy(this.gameObject);
                 SpawnExplosion(transform.position, 1);
             }
             SpawnExplosion(other.transform.position,0);
-            Destroy(other.gameObject);  
+            Destroy(other.gameObject);
         }
     }
 
@@ -76,22 +73,48 @@ public class LaserEnemy : Enemy
         }
     }
     
-    private void Oscillation()
+    private void Oscillation() // new
     {
         if (!Timer.isTimeStart()) return;
-        y += 0.05f;
-        x = Mathf.Sin(y);
-        x /= 2;
-        x += originalX;
-        transform.position = new Vector3(x, transform.position.y, transform.position.z);
+        if (transform.position == newCoords)
+        {
+            if (!trigger)
+            {
+                moveSpeed = 2f;
+                newCoords.x = UnityEngine.Random.Range(coordonates2Reach.x - 2f, coordonates2Reach.x + 2f);
+                newCoords.z = UnityEngine.Random.Range(coordonates2Reach.z - 2f, coordonates2Reach.z + 2f);
+            }
+            else
+            {
+                newCoords.x = UnityEngine.Random.Range(8f, 24f);
+                newCoords.z = UnityEngine.Random.Range(4f, 6f);
+                moveSpeed = 5f;
+            }
+            positionReach = true;
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, newCoords, moveSpeed * Time.deltaTime);
+        }
     }
-    
+    public void TriggerAbility()// new 
+    {
+        trigger = true;
+        StartCoroutine(TriggerTimer());
+    }
     IEnumerator ShootDelay(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         Shoot(bullet, this.transform.position,5f);
         shootPeriod = UnityEngine.Random.Range(shootTime, shootTime + 3);
         StartCoroutine(ShootDelay(shootPeriod));
+    }
+    public IEnumerator TriggerTimer()
+    {
+        yield return new WaitForSeconds(5f);
+        trigger = false;
+        yield return new WaitForSeconds(5f);
+        moveSpeed = 2f;
     }
    
 }

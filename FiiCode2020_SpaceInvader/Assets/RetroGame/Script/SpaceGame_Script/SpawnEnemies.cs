@@ -14,6 +14,9 @@ public class SpawnEnemies : MonoBehaviour
     float seconds;
     int wave, level;
     GameObject currentEnemy;
+    //new
+    [SerializeField] List<GameObject> enemyinGame = new List<GameObject>();
+
     private void Start()
     {
         Timer.StartTime();
@@ -25,6 +28,7 @@ public class SpawnEnemies : MonoBehaviour
         gameUI = FindObjectOfType<GameUI>();
         level = save_Level.currentLevel;
         StartCoroutine(Spawner());
+        StartCoroutine(Loop());
     }
     public void SpawnEnemy(float nrOfCollums, float nrOfRows, string enemyType, int health, int power, int shootTime)
     {
@@ -38,7 +42,6 @@ public class SpawnEnemies : MonoBehaviour
             currentEnemy = enemy[1];
         else if(enemyType == "FireEnemy")
             currentEnemy = enemy[2];
-
         for (float j = row * 2 + spaceShipZ; j <= 18; j += row)
         {
             for (float i = collum / 2; i <= 30; i += collum)
@@ -47,6 +50,7 @@ public class SpawnEnemies : MonoBehaviour
                 LaserEnemy Enemy = Instantiate(currentEnemy, new Vector3(i - distance, 0, j), Quaternion.identity).GetComponent<LaserEnemy>();
                 Enemy.Initialize(health, power, shootTime, enemyCoordonates);
                 enemiesAlive++;
+                enemyinGame.Add(Enemy.gameObject); // new
             }
             distance -= 10f;
         }
@@ -67,11 +71,13 @@ public class SpawnEnemies : MonoBehaviour
                 enemyBoss.Initialize(800, 2, 0.5f, enemyCoordonates, bossIndex);
                 break;
         }
+        enemyinGame.Add(enemyBoss.gameObject); //new
         enemiesAlive++;
     }
-    public void DecreseEnemyAlive()
+    public void DecreseEnemyAlive(GameObject thisEnemy)
     {
         enemiesAlive--;
+        enemyinGame.Remove(thisEnemy); // new
         if (enemiesAlive == 0)
         {
             wave++;
@@ -99,6 +105,17 @@ public class SpawnEnemies : MonoBehaviour
         }
         if (secondCount >= 1 && wave <= level_Creator.waveLimit[level - 1])
             gameUI.waveText.text = "Next wave in " + secondCount;
+    }
+    public IEnumerator Loop()
+    {
+        yield return new WaitForSeconds(2f);
+        int random = Random.Range(0,2);
+        if(random == 1 && enemiesAlive > 2)
+        {
+            int randomEnemy = Random.Range(1, enemiesAlive);
+            enemyinGame[randomEnemy].GetComponent<LaserEnemy>().TriggerAbility();
+        }
+        StartCoroutine(Loop());
     }
     public IEnumerator WinEvent()
     {

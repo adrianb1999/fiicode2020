@@ -15,7 +15,8 @@ public class EnemyBoss : MonoBehaviour
     [SerializeField] protected int power;
     [SerializeField] protected float shootTime;
     [SerializeField] protected Vector3 coordonates2Reach;
-
+    //new 
+    [SerializeField] Vector3 newCoords;
     public void Initialize(int health, int power, float shootTime, Vector3 coordonates2Reach, int type)
     {
         this.type = type;
@@ -33,17 +34,11 @@ public class EnemyBoss : MonoBehaviour
         shootPeriod = Random.Range(shootTime, shootTime + 2f);
         StartCoroutine(ShootDelay(shootPeriod));
         positionReach = false;
+        newCoords = coordonates2Reach;
     }
-    void Update()
+    void FixedUpdate()
     {
-        if (transform.position != coordonates2Reach)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, coordonates2Reach, moveSpeed * Time.deltaTime);
-        }
-        else
-            positionReach = true;
-        if (positionReach)
-            Oscillation();
+        Oscillation();
     }
     public void Shoot(GameObject bullet, Vector3 coords, float destroyTime, float angle)
     {
@@ -63,14 +58,7 @@ public class EnemyBoss : MonoBehaviour
             if (health == 0)
             {
                 score.UpdateScore(100);
-                spawnEnemies.DecreseEnemyAlive();
-                Destroy(gameObject);
-                SpawnExplosion(transform.position, 1);
-                SpawnExplosion(new Vector3(transform.position.x + 1,transform.position.y,transform.position.z + 1), 1);
-                SpawnExplosion(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z - 1), 1);
-                SpawnExplosion(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z + 1), 1);
-                SpawnExplosion(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z - 1), 1);
-
+                StartCoroutine(Dead());
             }
             SpawnExplosion(other.transform.position, 0);
             Destroy(other.gameObject);
@@ -83,16 +71,21 @@ public class EnemyBoss : MonoBehaviour
         Destroy(explossion, 0.1f);
     }
 
-    private void Oscillation()
+    private void Oscillation()// new
     {
-        if (!Timer.isTimeStart()) return; 
-        y += 0.05f;
-        x = Mathf.Sin(y);
-        x *= 2;
-        x += originalX;
-        transform.position = new Vector3(x, transform.position.y, transform.position.z);
+        if (!Timer.isTimeStart()) return;
+        if (transform.position == newCoords)
+        {
+            newCoords.x = Random.Range(coordonates2Reach.x - 2f, coordonates2Reach.x + 2f);
+            newCoords.z = Random.Range(coordonates2Reach.z - 2f, coordonates2Reach.z + 2f);
+            moveSpeed = 2f;
+            positionReach = true;
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, newCoords, moveSpeed * Time.deltaTime);
+        }
     }
-
     IEnumerator ShootDelay(float seconds)
     {
         yield return new WaitForSeconds(seconds);
@@ -109,5 +102,20 @@ public class EnemyBoss : MonoBehaviour
                 Shoot(bullet[currentBullet], transform.position, 5f, i);
         shootPeriod = Random.Range(shootTime, shootTime + 2f);
         StartCoroutine(ShootDelay(shootPeriod));
+    }
+    IEnumerator Dead()
+    {
+        yield return new WaitForSeconds(0.5f);
+        SpawnExplosion(transform.position, 1);
+        yield return new WaitForSeconds(0.5f);
+        SpawnExplosion(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z + 1), 1);
+        yield return new WaitForSeconds(0.5f);
+        SpawnExplosion(new Vector3(transform.position.x + 1, transform.position.y, transform.position.z - 1), 1);
+        yield return new WaitForSeconds(0.5f);
+        SpawnExplosion(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z + 1), 1);
+        yield return new WaitForSeconds(0.5f);
+        SpawnExplosion(new Vector3(transform.position.x - 1, transform.position.y, transform.position.z - 1), 1);
+        spawnEnemies.DecreseEnemyAlive(this.gameObject);
+        Destroy(gameObject);
     }
 }
