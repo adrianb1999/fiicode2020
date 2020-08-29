@@ -106,7 +106,7 @@ public class SpawnEnemies : MonoBehaviour
         if (secondCount >= 1 && wave <= level_Creator.waveLimit[level - 1])
             gameUI.waveText.text = "Next wave in " + secondCount;
     }
-    public IEnumerator Loop()
+    public IEnumerator Loop()// new
     {
         yield return new WaitForSeconds(2f);
         int random = Random.Range(0,2);

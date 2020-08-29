@@ -16,9 +16,10 @@ public class CameraMode : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F3))
         {    
             mode++;
-            if(mode > 3)
+            if(mode > 2)
                 mode = 0;
-            for (int i = 0; i < 4; i++)
+
+            for (int i = 0; i < 3; i++)
                 if (i == mode)
                     currentCamera[i].SetActive(true);
                 else

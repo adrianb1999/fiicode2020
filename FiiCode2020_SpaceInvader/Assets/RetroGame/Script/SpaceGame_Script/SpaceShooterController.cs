@@ -183,7 +183,6 @@ public class SpaceShooterController : MonoBehaviour
         }
         healthBar.fillAmount = (float)health / 100;
     }
-
     private void GameOver()
     {
         Timer.StopTime();

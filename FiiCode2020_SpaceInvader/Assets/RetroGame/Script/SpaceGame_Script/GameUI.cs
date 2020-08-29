@@ -81,7 +81,7 @@ public class GameUI : MonoBehaviour
 
         pause_Title.sizeDelta = new Vector2(Screen.height / 2, Screen.height * 0.1875f);
         pause_Title.transform.position = new Vector2(Screen.width / 2, Screen.height * 0.78125f);
-        pause_Title.GetComponent<Text>().fontSize = (int)Screen.height / 25;
+        pause_Title.GetComponent<Text>().fontSize = (int)Screen.height / 35;
 
         pause_Restart.sizeDelta = new Vector2(Screen.height / 2, Screen.height * 0.1875f);
         pause_Restart.transform.position = new Vector2(Screen.width / 2, Screen.height * 0.59375f);
